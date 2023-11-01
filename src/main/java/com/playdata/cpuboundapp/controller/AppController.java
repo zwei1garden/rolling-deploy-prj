@@ -21,7 +21,7 @@ public class AppController {
 
     @RequestMapping("/hello")
     public String hello() {
-        return "webhook test restart!!!!! detach mode rolling deploy";
+        return "webhook test restart!!!!! detach mode rolling deploy, sleep 60";
     }
 
     private String getMD5Digest(String input) throws NoSuchAlgorithmException {
