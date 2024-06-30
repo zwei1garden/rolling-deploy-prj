@@ -1,9 +1,11 @@
-FROM openjdk:17-jdk-slim
+# Step 1: Build the jar file
+FROM gradle:7.5.1-jdk17 AS build
+WORKDIR /app
+COPY . /app
+RUN gradle clean build
 
-CMD ["./gradlew", "clean", "build"]
-
-VOLUME /tmp
-
-EXPOSE 8080
-
-ENTRYPOINT ["java","-jar","./build/libs/cpuboundapp-0.0.1-SNAPSHOT.jar"]
+# Step 2: Run the jar file
+FROM openjdk:17-slim
+WORKDIR /app
+COPY --from=build /app/build/libs/*.jar /app/app.jar
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
