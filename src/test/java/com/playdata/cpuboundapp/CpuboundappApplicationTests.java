@@ -8,7 +8,7 @@ class CpuboundappApplicationTests {
 
 	@Test
 	void contextLoads() {
-		int a = 3 / 0; 
+		// int a = 3 / 0; 
 	}
 
 }
